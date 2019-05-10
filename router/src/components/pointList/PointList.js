@@ -1,0 +1,1 @@
+import './PointList.scss'
