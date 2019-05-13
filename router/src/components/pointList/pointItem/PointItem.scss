@@ -1,0 +1,17 @@
+@import '../../../common/style/variables.scss';
+
+.point-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: $offset__small;
+    background: indianred;
+    
+    &__name {
+
+    }
+
+    &__remove-icon {
+
+    }
+}

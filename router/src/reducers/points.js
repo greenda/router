@@ -1,3 +1,5 @@
+import { pointActionTypes } from  '../constants/point-action-types'
+
 const initalState = {
     1: {
         id: 1,
@@ -17,6 +19,26 @@ const initalState = {
 
 }
 
-export function pointsReducer(state = initalState) {
-    return state
+function changePointsOrder(state, oldIndex, newIndex) {
+    const pointArray = Object.values(state)
+    pointArray.sort((a, b) => a.order - b.order)
+    const element = pointArray[oldIndex]
+    pointArray.splice(oldIndex, 1)
+    pointArray.splice(newIndex, 0, element)
+    const newState = {}
+    pointArray.forEach((value, index) => 
+        newState[value.id] = {...value, order: index}
+    )
+    console.log(newState)
+    return newState
+}
+
+export function pointsReducer(state = initalState, action) {
+    switch (action.type) {
+        case pointActionTypes.CHANGE_ORDER: 
+            const { newIndex, oldIndex } = action.payload
+            return changePointsOrder(state, oldIndex, newIndex)
+        default: 
+            return state    
+    }
 }

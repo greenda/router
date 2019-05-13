@@ -1,0 +1,18 @@
+@import '../../common/style/variables.scss';
+
+.points-container {
+    width: 200px;
+    padding: $offset__medium;
+
+    & > .point-item {
+        margin: $offset__small
+    }
+}
+
+.dragging-over {
+    background: 'lightgreen'
+}
+
+.dragging {
+    background: 'red'
+}
