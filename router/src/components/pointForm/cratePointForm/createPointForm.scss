@@ -1,0 +1,18 @@
+@import '../../../common/style/variables.scss';
+
+.add-point-form {
+    &__container {
+        padding: $offset__medium;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__input {
+        width: 196px
+    }
+
+    &__label {
+        font-size: 16px;
+        margin-bottom:  $offset__small;
+    }
+}

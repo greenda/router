@@ -3,12 +3,12 @@ import { Draggable } from 'react-beautiful-dnd'
 import './PointItem.scss'
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-    background: isDragging ? 'lightgreen' : 'grey',  
+    background: isDragging ? '#CDDC39' : '#8BC34A',  
     ...draggableStyle
 });
 
-export function PointItem({point, index}) {
-    const { name } = point
+export function PointItem({point, index, removePoint}) {
+    const { name, id } = point
     
     return (
         <Draggable key={point.id} draggableId={point.id} index={index}>
@@ -24,7 +24,7 @@ export function PointItem({point, index}) {
                 className='point-item'
             >
                 <div data-testid="task-content" className="point-item__name">{name}</div>
-                <div className="point-item__remove-icon">x</div>     
+                <div className="point-item__remove-icon" onClick={() => removePoint(id)}>x</div>     
             </div>
             )}
         </Draggable>

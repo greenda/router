@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { pointArraySelector } from '../../selectors/index'
 import PointItem from './pointItem/PointItem'
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { changePointOrder } from '../../actions/actions'
+import { changePointOrder, removePoint } from '../../actions/actions'
 import './PointList.scss'
 
 function onDragEnd(result, changePointOrder) {
@@ -17,10 +17,10 @@ function onDragEnd(result, changePointOrder) {
 }
   
 const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? 'lightblue' : '',
+    border: isDraggingOver ? 'dashed 1px gray' : 'solid 1px white'
 });
 
-export function PointList({ points, addPoint, changePointOrder }) {
+export function PointList({ points, changePointOrder, removePoint }) {
     return (    
         <DragDropContext onDragEnd={(result) => onDragEnd(result, changePointOrder)}>
             <Droppable droppableId="droppable">
@@ -29,11 +29,11 @@ export function PointList({ points, addPoint, changePointOrder }) {
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
-              data-testid='to-do-column'
-                       
+              data-testid='to-do-column'                       
             >
+              <span>Маршрут</span>
               {points.map((point, index) => (
-                    <PointItem key={point.id} point={point} index={index}>PointList</PointItem>
+                    <PointItem key={point.id} point={point} index={index} removePoint={removePoint}>PointList</PointItem>
                 ))}
               {provided.placeholder}
             </div>
@@ -47,5 +47,5 @@ export default connect(
     (state) => ({
         points: pointArraySelector(state)
     }),
-    { changePointOrder }
+    { changePointOrder, removePoint }
 )(PointList)

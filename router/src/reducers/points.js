@@ -29,7 +29,6 @@ function changePointsOrder(state, oldIndex, newIndex) {
     pointArray.forEach((value, index) => 
         newState[value.id] = {...value, order: index}
     )
-    console.log(newState)
     return newState
 }
 
@@ -38,6 +37,19 @@ export function pointsReducer(state = initalState, action) {
         case pointActionTypes.CHANGE_ORDER: 
             const { newIndex, oldIndex } = action.payload
             return changePointsOrder(state, oldIndex, newIndex)
+        case pointActionTypes.ADD_POINT:
+            const newPointId = new Date().getTime().toString();
+            // TODO через inmuttable
+            const { name, coordinate } = action.payload
+            const newState = { ...state }
+            newState[newPointId] = { name, coordinate, id: newPointId }
+            return newState
+        case pointActionTypes.REMOVE_POINT:
+            const { pointId } = action.payload
+            // TODO через inmuttable
+            const stateBeforeRemove = { ...state }
+            delete stateBeforeRemove[pointId]
+            return stateBeforeRemove
         default: 
             return state    
     }

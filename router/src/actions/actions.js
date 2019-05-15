@@ -1,9 +1,16 @@
 import { pointActionTypes } from  '../constants/point-action-types'
 
-export function addPoint(point) {
+export function addPoint(name, coordinate) {
     return {
         type: pointActionTypes.ADD_POINT,
-        payload: {point}
+        payload: { name, coordinate }
+    }
+}
+
+export function removePoint(pointId) {
+    return {
+        type: pointActionTypes.REMOVE_POINT,
+        payload: { pointId }
     }
 }
 
