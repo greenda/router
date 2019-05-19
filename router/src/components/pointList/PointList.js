@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { pointArraySelector } from '../../selectors/index'
 import PointItem from './pointItem/PointItem'
 import { DragDropContext, Droppable } from "react-beautiful-dnd";

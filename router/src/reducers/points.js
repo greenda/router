@@ -40,9 +40,9 @@ export function pointsReducer(state = initalState, action) {
         case pointActionTypes.ADD_POINT:
             const newPointId = new Date().getTime().toString();
             // TODO через inmuttable
-            const { name, coordinate } = action.payload
+            const { name, coordinates } = action.payload
             const newState = { ...state }
-            newState[newPointId] = { name, coordinate, id: newPointId }
+            newState[newPointId] = { name, coordinates, id: newPointId }
             return newState
         case pointActionTypes.REMOVE_POINT:
             const { pointId } = action.payload

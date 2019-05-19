@@ -1,9 +1,10 @@
 import { pointActionTypes } from  '../constants/point-action-types'
+import { mapActionTypes } from '../constants/map-action-types'
 
-export function addPoint(name, coordinate) {
+export function addPoint(name, coordinates) {
     return {
         type: pointActionTypes.ADD_POINT,
-        payload: { name, coordinate }
+        payload: { name, coordinates }
     }
 }
 
@@ -18,5 +19,12 @@ export function changePointOrder(oldIndex, newIndex) {
     return {
         type: pointActionTypes.CHANGE_ORDER,
         payload: { oldIndex, newIndex }
+    }
+}
+
+export function changeMapCenter(mapCenterCoordinates) {
+    return {
+        type: mapActionTypes.CHANGE_CENTER,
+        payload: { mapCenterCoordinates }
     }
 }

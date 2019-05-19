@@ -31,3 +31,18 @@
     transform: rotate(360deg);
   }
 }
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+
+  &__points-column {
+
+  }
+
+  &__map-column {
+    width: 80%;
+    height: 600px;
+    background: beige;
+  }
+}
