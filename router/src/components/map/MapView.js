@@ -1,7 +1,6 @@
 import React from "react"
 import { compose, withProps, withHandlers } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polyline } from "react-google-maps"
-import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel"
+import { withScriptjs, withGoogleMap, GoogleMap, Polyline } from "react-google-maps"
 import { Markers } from './Markers'
 
 const GoogleMapComponent = compose(
@@ -49,13 +48,12 @@ const GoogleMapComponent = compose(
 
 // Пример https://jsbin.com/molerasebo/2/edit?js,console,output
 
-export function MapView({ points, onChangeCenter }) {   
-    console.log('MapView ' + points) 
+export function MapView({ points, onChangeMapCenter }) {   
     return (
         <GoogleMapComponent
             isMarkerShown={true}
             onMarkerClick={(event) => { console.log(event)}}
-            onChangeCenter={onChangeCenter}
+            onChangeCenter={onChangeMapCenter}
             points={points}
         />
     )
