@@ -5,13 +5,15 @@
     flex-direction: row;
     justify-content: space-between;
     padding: $offset__small;
-    background: indianred;
     
-    &__name {
-
-    }
-
     &__remove-icon {
-
+        font-weight: bold;
+        padding: 4px;
+        border-radius: 4px;
+        height: 16px;
+        display: flex;
+        align-items: flex-end;
+        width: 16px;
+        justify-content: center;
     }
 }

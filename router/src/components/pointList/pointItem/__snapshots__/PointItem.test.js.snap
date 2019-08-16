@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly point item component 1`] = `
+<div
+  className="point-item"
+>
+  <div
+    className="point-item__name"
+    data-testid="task-content"
+  >
+    first point
+  </div>
+  <div
+    className="point-item__remove-icon"
+    onClick={[Function]}
+  >
+    x
+  </div>
+</div>
+`;

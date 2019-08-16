@@ -4,7 +4,11 @@
     width: 200px;
     padding: $offset__medium;
 
-    & > .point-item {
-        margin: $offset__small 0px $offset__small 0px
+    & > .point-item-container {
+        margin: $offset__small 0px $offset__small 0px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
     }
 }
