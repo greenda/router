@@ -3,8 +3,13 @@
 .add-point-form {
     &__container {
         padding: $offset__medium;
+        padding-bottom: 34px;
         display: flex;
         flex-direction: column;
+
+        &.error {
+            padding-bottom: 0px;
+        }
     }
 
     &__input {
@@ -14,5 +19,11 @@
     &__label {
         font-size: 16px;
         margin-bottom:  $offset__small;
+    }
+
+    &__error {
+        font-size: 0.8em;
+        font-style: italic;
+        color: $dark-color__red;
     }
 }

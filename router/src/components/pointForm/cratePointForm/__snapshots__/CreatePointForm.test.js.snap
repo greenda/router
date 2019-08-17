@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreatePointForm render correctly point 1`] = `
+<div
+  className="add-point-form__container "
+>
+  <span
+    className="add-point-form__label"
+  >
+    Добавить точку
+  </span>
+  <input
+    className="add-point-form__input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Новая точка маршрута"
+    type="text"
+    value=""
+  />
+  <span
+    className="add-point-form__error"
+  >
+    
+  </span>
+</div>
+`;
