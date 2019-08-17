@@ -7,13 +7,12 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-beautiful-dnd": "^11.0.3",
-    "react-beautiful-dnd-test-utils": "^0.2.2",
+    "react-beautiful-dnd-test-utils": "^2.0.0",
     "react-dnd-test-utils": "^7.4.4",
     "react-dom": "^16.8.6",
     "react-google-maps": "^9.4.5",
     "react-redux": "^7.0.3",
     "react-scripts": "3.0.1",
-    "react-testing-library": "^7.0.0",
     "redux": "^4.0.1",
     "reselect": "^4.0.0",
     "rxjs": "^6.5.2"
@@ -41,6 +40,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.0.0",
+    "@testing-library/react": "^9.1.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "react-dnd-test-backend": "^7.4.4"

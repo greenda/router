@@ -40,7 +40,7 @@ export function pointsReducer(state = initalState, action) {
             const { newIndex, oldIndex } = action.payload
             return changePointsOrder(state, oldIndex, newIndex)
         case pointActionTypes.ADD_POINT:
-            const newPointId = new Date().getTime().toString();
+            const newPointId = +new Date().getTime().toString();
             // TODO через inmuttable
             const { name, coordinates } = action.payload
             const newState = { ...state }

@@ -1,29 +1,25 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { store } from './store/store';
-import './App.scss';
-import PointList from './components/pointList/PointList'
-import CreatePointForm from './components/pointForm/cratePointForm/createPointForm'
+import React from 'react'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
+import PointListContainer from './components/pointList/PointListContainer'
+import CreatePointFormContainer from './components/pointForm/cratePointForm/CreatePointFormContainer'
 import MapContainer from './components/map/MapContainer'
-import { DragDropContext } from 'react-beautiful-dnd'
-
+import './App.scss';
 
 function App() {
   return (
     <Provider store={store}>
       <div className="main-container">
         <div className="main-container__points-column">
-        <CreatePointForm />
-        <DragDropContext>
-          <PointList />
-        </DragDropContext>
+          <CreatePointFormContainer />
+          <PointListContainer />
         </div>
         <div className="main-container__map-column">
-          <MapContainer />
+          {/* <MapContainer /> */}
         </div>
       </div>
     </Provider>
-  );
+  )
 }
 
-export default App;
+export default App

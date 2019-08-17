@@ -8,21 +8,22 @@ const mockPoint = {
 	coordinates: [-41.28, 174.69],
 	name: 'first point'
 }
+describe('PointItem', () => {
+	it('render correctly point item component', () => {
+		const element = renderer.create(
+			<PointItem point={mockPoint} />
+		).toJSON();
+		expect(element).toMatchSnapshot();
+	})
 
-it('render correctly point item component', () => {
-	const tree = renderer.create(
-		<PointItem point={mockPoint} />
-	  ).toJSON();
-	expect(tree).toMatchSnapshot();
-})
+	it('call remove function', () => {
+		const removeFunction = (pointId) => {
+			expect(pointId).toEqual(mockPoint.id)		
+		}
 
-it('call remove function', () => {
-	const removeFunction = (pointId) => {
-		expect(pointId).toEqual(mockPoint.id)		
-	}
-
-	const pointItem = mount(
-		<PointItem point={mockPoint} removePoint={removeFunction}/>
-	)
-	pointItem.find('.point-item__remove-icon').simulate('click')
+		const pointItem = mount(
+			<PointItem point={mockPoint} removePoint={removeFunction}/>
+		)
+		pointItem.find('.point-item__remove-icon').simulate('click')
+	})
 })

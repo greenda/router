@@ -4,11 +4,17 @@
     width: 200px;
     padding: $offset__medium;
 
-    & > .point-item-container {
+    & > .points-column > .point-item-container {
         margin: $offset__small 0px $offset__small 0px;
 
         &:last-child {
             margin-bottom: 0px;
         }
     }
+}
+
+.empty-point-list {
+    padding-top: $offset__small;
+    font-style: italic;
+    font-size: 0.8em;
 }

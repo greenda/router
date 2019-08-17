@@ -11,7 +11,7 @@
           "--runInBand",
           "--no-cache",
           "--watchAll=false",
-          "PointList"
+          "CreatePointForm"
         ],
         "cwd": "${workspaceRoot}",
         "protocol": "inspector",
