@@ -11,7 +11,7 @@
           "--runInBand",
           "--no-cache",
           "--watchAll=false",
-          "CreatePointForm"
+          "PointMarkers.test.js"
         ],
         "cwd": "${workspaceRoot}",
         "protocol": "inspector",

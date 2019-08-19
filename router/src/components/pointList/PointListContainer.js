@@ -19,7 +19,6 @@ export function PointListContainer({ points, changePointOrder, removePoint }) {
     return (
         <PointListView 
             points={points}
-            // TODO может removePoint в контейнер итема перенести?
             removePoint={removePoint}
             onDragEnd={onDragEnd}/>
     )
@@ -29,7 +28,10 @@ PointListView.propTypes = {
 	points: PropTypes.arrayOf(PropTypes.shape({
 		id: number,
         index: number,
-        coordinates: PropTypes.arrayOf(number),
+        coordinates: PropTypes.shape({
+            lat: number,
+            lng: number,
+        }),
         name: string,
     })),
 	changePointOrder: func,

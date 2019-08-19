@@ -3,6 +3,7 @@
 .points-container {
     width: 200px;
     padding: $offset__medium;
+    overflow: auto;
 
     & > .points-column > .point-item-container {
         margin: $offset__small 0px $offset__small 0px;

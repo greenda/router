@@ -16,7 +16,10 @@ export function CreatePointFormContainer({ addPoint, mapCenter }) {
 
 CreatePointFormContainer.propTypes = {
     addPoint: func,
-    mapCenter: PropTypes.arrayOf(number),
+    mapCenter: PropTypes.shape({
+        lat: number,
+        lng: number,
+    }),
 }
 
 export default connect(

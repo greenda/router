@@ -15,7 +15,7 @@ function App() {
           <PointListContainer />
         </div>
         <div className="main-container__map-column">
-          {/* <MapContainer /> */}
+          <MapContainer />
         </div>
       </div>
     </Provider>

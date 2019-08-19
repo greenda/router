@@ -1,7 +1,7 @@
 import { mapActionTypes } from '../constants/map-action-types'
 
 const initalState = {
-    mapCenter: [0, 0]
+    mapCenter: { lat: -41.253, lng: 174.751 }
 }
 
 export function mapReducer(state = initalState, action) {

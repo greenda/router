@@ -62,7 +62,10 @@ PointListView.propTypes = {
 	points: PropTypes.arrayOf(PropTypes.shape({
 		id: number,
         index: number,
-        coordinates: PropTypes.arrayOf(number),
+        coordinates: PropTypes.shape({
+            lat: number,
+            lng: number,
+        }),
         name: string,
 	})),
 	onDragEnd: func,

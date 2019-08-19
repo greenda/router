@@ -28,3 +28,10 @@ export function changeMapCenter(mapCenterCoordinates) {
         payload: { mapCenterCoordinates }
     }
 }
+
+export function changePointCoordinate(pointId, coordinates) {
+    return {
+        type: pointActionTypes.CHANGE_COORDINATES,
+        payload: { pointId, coordinates }
+    }
+}

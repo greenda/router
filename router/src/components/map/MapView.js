@@ -1,62 +1,104 @@
-import React from "react"
-import { compose, withProps, withHandlers } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Polyline } from "react-google-maps"
-import { Markers } from './Markers'
+import React, { useState } from "react"
+import PropTypes, { number, string, func } from 'prop-types'
+import { GoogleMap, LoadScript, useGoogleMap } from '@react-google-maps/api'
+import Route from './Route/Route'
+import PointMarkers from './PointMarkers/PointMarkers'
+import PointInfo from './PointInfo/PointInfo'
+                            
+const DEFAULT_CENTER = { lat: -41.253, lng: 174.751 }
+const DEFAULT_ZOOM = 12
 
-const GoogleMapComponent = compose(
-    withProps({
-      googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBwCOCQz1iTe1H8WPym6pHbw93MVlRp8tE&v=3.exp&libraries=geometry,drawing,places",
-      loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div style={{ height: `400px` }} />,
-      mapElement: <div style={{ height: `100%` }} />,
-    }),
-    withScriptjs,
-    withHandlers(() => {
-        const refs = {
-          map: undefined,
+function MapWithHook(props) {
+    const map = useGoogleMap()
+
+    React.useEffect(
+        function effect() {
+            map.addListener('center_changed', () => {
+                const lat = map.center.lat()
+                const lng = map.center.lng()
+
+                props.setLat(lat)
+                props.setLng(lng)
+            })
+        },
+        [map, props]
+    );
+
+    return (<></>)
+}
+
+const MemoizedMapWithHook = React.memo(MapWithHook);
+
+export function MapView({ points, onChangeMapCenter, changePointCoordinate }) {
+    const [lat, setLat] = useState(DEFAULT_CENTER.lat);
+    const [lng, setLng] = useState(DEFAULT_CENTER.lng);
+    const [isInfoOpen, setIsInfoOpen] = useState(true)
+    const [infoPoint, setInfoPoint] = useState()
+
+    const onMarkerClickHundler = (pointId) => {
+        if (pointId) {
+            setInfoPoint(points.find(point => point.id === pointId))
+            setIsInfoOpen(true)
         }
-    
-        return {
-          onMapMounted: () => ref => {
-            refs.map = ref
-          },
-          onZoomChanged: ({ onZoomChange }) => () => {
-                //console.log(refs.map.getZoom())
-          },
-          onCenterChanged: () => () => {
-              const center = refs.map.getCenter()
-              return center
-          }
-        }
-      }),
-    withGoogleMap,
-  )((props) =>
-    <GoogleMap
-        defaultZoom={11}
-        ref={props.onMapMounted}
-        onZoomChanged={props.onZoomChanged}
-        onCenterChanged={(event) => {
-            const center = props.onCenterChanged()
-            props.onChangeCenter(center)
-        }}
-        defaultCenter={{ lat: -41.253, lng: 174.751 }}
-    >
-      <Polyline path={[{ lat: -41.28, lng: 174.69 }, { lat: -41.24, lng: 174.74 } ]}/>
-      <Markers points={props.points} />
-    </GoogleMap>
-)
+    }
 
-// Пример https://jsbin.com/molerasebo/2/edit?js,console,output
+    const onInfoWindowCloseHundler = () => {
+        setIsInfoOpen(false)
+    }
 
-export function MapView({ points, onChangeMapCenter }) {   
+    const onMapClickHundler = () => {
+        setIsInfoOpen(false)
+    }
+
     return (
-        <GoogleMapComponent
-            isMarkerShown={true}
-            onMarkerClick={(event) => { console.log(event)}}
-            onChangeCenter={onChangeMapCenter}
-            points={points}
-        />
+        <LoadScript
+            id="script-loader"            
+            googleMapsApiKey="YOUR_API_KEY"
+        >
+            <GoogleMap
+                id="map"
+                onCenterChanged={() => onChangeMapCenter({ lat, lng })}
+                mapContainerStyle={{
+                    height: "100%",
+                    width: "100%"
+                }}
+                zoom={DEFAULT_ZOOM}
+                center={{lat, lng}}
+                onClick={onMapClickHundler}
+            >
+                <PointMarkers
+                    points={points}
+                    changePointCoordinate={changePointCoordinate}
+                    onClick={onMarkerClickHundler}
+                />
+                <Route 
+                    points={points} 
+                />
+                {isInfoOpen && infoPoint ? (
+                        <PointInfo point={infoPoint} onClose={onInfoWindowCloseHundler}/>
+                    ) : (<></>)
+                }
+                <MemoizedMapWithHook 
+                    setLat={setLat} 
+                    setLng={setLng} 
+                />
+            </GoogleMap>
+        </LoadScript>
     )
+}
+
+MapView.propTypes = {
+    points: PropTypes.arrayOf(PropTypes.shape({
+		id: number,
+        index: number,
+        coordinates: PropTypes.shape({
+            lat: number,
+            lng: number,
+        }),
+        name: string,
+    })),
+    onChangeMapCenter: func,
+    changePointCoordinate: func,
 }
 
 export default MapView
