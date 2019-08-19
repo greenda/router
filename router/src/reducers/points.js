@@ -19,7 +19,6 @@ const initalState = {
         coordinates: { lat: -41.30, lng: 174.78 },
         name: 'third point'
     },
-
 }
 
 function changePointsOrder(state, oldIndex, newIndex) {
@@ -44,13 +43,10 @@ export function pointsReducer(state = initalState, action) {
             return changePointsOrder(state, oldIndex, newIndex)
         case pointActionTypes.ADD_POINT:
             const newPointId = +new Date().getTime().toString();
-            // TODO через inmuttable
             const { name } = payload            
             newState[newPointId] = { name, coordinates, id: newPointId, index: Object.keys(state).length }
             return newState
         case pointActionTypes.REMOVE_POINT:
-            
-            // TODO через inmuttable
             const stateBeforeRemove = { ...state }
             delete stateBeforeRemove[pointId]
             return stateBeforeRemove

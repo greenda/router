@@ -9,6 +9,11 @@ describe('Route', () => {
         )
 
         expect(wrapper.exists()).toEqual(true)
-        expect(wrapper.props().path).toEqual([ [ -41.28, 174.69 ], [ -41.24, 174.74 ], [ -41.3, 174.78 ] ])
+        expect(wrapper.props().path)
+            .toEqual([ 
+                { lat: -41.28, lng: 174.69 },
+                { lat: -41.24, lng: 174.74 }, 
+                { lat: -41.3, lng: 174.78 }
+            ])
     })
 })
